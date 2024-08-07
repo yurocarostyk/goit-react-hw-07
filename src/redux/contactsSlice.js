@@ -1,21 +1,6 @@
 import { createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { fetchContacts, addContact, deleteContact } from './contactsOps';
 
-// Асинхронні дії
-export const fetchContacts = createAsyncThunk('contacts/fetchContacts', async () => {
-  const response = await axios.get('https://66af1704b05db47acc58f8f6.mockapi.io/Contacts');
-  return response.data;
-});
-
-export const addContact = createAsyncThunk('contacts/addContact', async (contact) => {
-  const response = await axios.post('https://66af1704b05db47acc58f8f6.mockapi.io/Contacts', contact);
-  return response.data;
-});
-
-export const deleteContact = createAsyncThunk('contacts/deleteContact', async (contactId) => {
-  await axios.delete(`https://66af1704b05db47acc58f8f6.mockapi.io/Contacts/${contactId}`);
-  return contactId;
-});
 
 // Слайс контактів
 const contactsSlice = createSlice({
